@@ -1,0 +1,30 @@
+﻿@model List<Vip2Vip.Models.PeriopContentViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h3>@ViewBag.Status</h3>
+<div class="row">
+    <div class="col-md-12">
+        <table>
+            <tr>
+                <th>CourseID</th>
+                <th>CourseType</th>
+                <th>Description</th>
+                <th>IsActive</th>
+                <th>TemplateID</th>
+            </tr>
+            @foreach (var item in Model.Take(10))
+            {
+                <tr>
+                    <td>@item.CourseID</td>
+                    <td>@item.CourseType</td>
+                    <td>@item.Description</td>
+                    <td>@item.IsActive</td>
+                    <td>@item.TemplateID</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
