@@ -30,8 +30,8 @@ namespace Vip2Vip.Controllers
             //    periopContentViewModelList.Add(periopContentViewModel);
             //}
 
-            string fromAddress = "sales@shreeharifoods.net";
-            string mailPassword = "shreeharifoods123*";       
+            string fromAddress = "thiru@shreeharifoods.net";
+            string mailPassword = "testing123*";       
 
             //StringBuilder htmlbody = new StringBuilder();
             //htmlbody.Append("<table>");
@@ -72,7 +72,7 @@ namespace Vip2Vip.Controllers
 
             send_mail.IsBodyHtml = true;
             //address from where mail will be sent.
-            send_mail.From = new MailAddress("sales@shreeharifoods.net");
+            send_mail.From = new MailAddress("thiru@shreeharifoods.net");
             //address to which mail will be sent.           
             send_mail.To.Add(new MailAddress("thirushr@gmail.com"));
             //subject of the mail.
