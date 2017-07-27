@@ -73,11 +73,13 @@ namespace Vip2Vip.Controllers
             send_mail.IsBodyHtml = true;
             //address from where mail will be sent.
             send_mail.From = new MailAddress("thirushr@gmail.com");
-            //address to which mail will be sent.           
+            //address to which mail will be sent.      v 
+              
             send_mail.To.Add(new MailAddress("thirunavukkarasu@outlook.com"));
             //subject of the mail.
             send_mail.Subject = "Test Mail VIP 2 VIP";
 
+            //To send the mail give the permission from Gmail https://myaccount.google.com/lesssecureapps 
             send_mail.Body = htmlbody.ToString();
             client.Send(send_mail);
             
