@@ -34,55 +34,44 @@ namespace Vip2Vip.Controllers
             string mailPassword = "9444932329";
 
             StringBuilder htmlbody = new StringBuilder();
-            htmlbody.Append("<table>");
-            htmlbody.Append("<tr><th colspan=3><h2> New User contact Details</h2></th></tr>");
-            htmlbody.Append("<tr><td>FirstName</td> <td>:</td><td>");
-            htmlbody.Append("Thiru");
-            htmlbody.Append("</td></tr>");
-            htmlbody.Append("<tr><td>LastName</td> <td>:</td><td>");
-            htmlbody.Append("Perumal");
-            htmlbody.Append("</td></tr>");
-            htmlbody.Append("<tr><td>Area</td> <td>:</td><td>");
-            htmlbody.Append("Chennai");
-            htmlbody.Append("</td></tr>");
-            htmlbody.Append("<tr><td>Email Address</td> <td>:</td><td>");
-            htmlbody.Append("test@gmail.com");
-            htmlbody.Append("</td></tr>");
-            htmlbody.Append("<tr><td>Contact Number</td> <td>:</td><td>");
-            htmlbody.Append("84575 23568");
-            htmlbody.Append("</td></tr>");
-            htmlbody.Append("<tr><td>User Message</td> <td>:</td><td>");
-            htmlbody.Append("Test");
-            htmlbody.Append("</td></tr>");
-            htmlbody.Append("</table>");
 
-            // Create smtp connection.
-            SmtpClient client = new SmtpClient();
-            client.Port = 587;//outgoing port for the mail.
-            client.Host = "smtp.gmail.com";
-            client.EnableSsl = true;
-            client.Timeout = 100000;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential(fromAddress, mailPassword);
+            UserRepository userRepository = new UserRepository();
+            var userModelList = userRepository.GetAllUserDetails();
+            foreach (var user in userModelList)
+            {
+                htmlbody.Append("Dear Rtr." + user.Name + ",<br /><br />");
+                htmlbody.Append("We are pleased to offer you the position of <b>“" + user.Position + "”</b> with <b>Rotaract club of Deepam</b> for the year " + user.Year + ".<br/><br/>");
+                htmlbody.Append("We welcome all your ideas and suggestions to improve the club activities <br/><br/>");
+                htmlbody.Append("We are expecting you to presence on all the special occasion in association with Rotaract club of Deepam.<br/><br/>");
+                htmlbody.Append("Regards,<br/>Rtr." + user.Name + ",<br />" + user.Position + "(" + user.Year + ")<br/>Mobile: +91 98400 14924.<br/>E - Mail: thirunavukkarasu@outlook.com");
+
+                // Create smtp connection.
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;//outgoing port for the mail.
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Timeout = 100000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential(fromAddress, mailPassword);
 
 
-            // Fill the mail form.
-            var send_mail = new MailMessage();
+                // Fill the mail form.
+                var send_mail = new MailMessage();
 
-            send_mail.IsBodyHtml = true;
-            //address from where mail will be sent.
-            send_mail.From = new MailAddress("thirushr@gmail.com");
-            //address to which mail will be sent.      v 
-              
-            send_mail.To.Add(new MailAddress("thirunavukkarasu@outlook.com"));
-            //subject of the mail.
-            send_mail.Subject = "Test Mail VIP 2 VIP";
+                send_mail.IsBodyHtml = true;
+                //address from where mail will be sent.
+                send_mail.From = new MailAddress("thirushr@gmail.com");
+                //address to which mail will be sent.      v 
 
-            //To send the mail give the permission from Gmail https://myaccount.google.com/lesssecureapps 
-            send_mail.Body = htmlbody.ToString();
-            client.Send(send_mail);
-            
+                send_mail.To.Add(new MailAddress("thirunavukkarasu@outlook.com"));
+                //subject of the mail.
+                send_mail.Subject = "Test Mail VIP 2 VIP";
+
+                //To send the mail give the permission from Gmail https://myaccount.google.com/lesssecureapps 
+                send_mail.Body = htmlbody.ToString();
+                client.Send(send_mail);
+            }
             ViewBag.Status = "Success";
 
             return View(periopContentViewModelList);
