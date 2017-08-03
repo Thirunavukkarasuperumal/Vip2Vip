@@ -31,7 +31,7 @@ namespace Vip2Vip.Controllers
             //}
 
             string fromAddress = "thirushr@gmail.com";
-            string mailPassword = "9444932329";
+            string mailPassword = "X";
 
             StringBuilder htmlbody = new StringBuilder();
 
@@ -62,7 +62,7 @@ namespace Vip2Vip.Controllers
                 send_mail.IsBodyHtml = true;
                 //address from where mail will be sent.
                 send_mail.From = new MailAddress("thirushr@gmail.com");
-                //address to which mail will be sent.      v 
+                //address to which mail will be sent.     
 
                 send_mail.To.Add(new MailAddress("thirunavukkarasu@outlook.com"));
                 //subject of the mail.
